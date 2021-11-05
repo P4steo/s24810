@@ -2,10 +2,14 @@
 #include <iostream>
 #include <string>
 std::string czas::to_string() const{
-	std::string zmienna =
-	std::to_string(hour) + ":"
-	+ std::to_string(minute) + ":" + std::to_string(second);
-	return zmienna;   
+        std::string zmienna;
+        if (hour<10) zmienna+="0";
+        zmienna += std::to_string(hour) + ":";
+        if (minute<10) zmienna+="0";
+        zmienna += std::to_string(minute) + ":";
+        if (second<10) zmienna+="0";
+        zmienna += std::to_string(second);
+        return zmienna;
 }
 
 time_of_day czas::pora_dnia() const {
@@ -56,13 +60,13 @@ int main(){
 	time.next_hour();
 	std::cout<<time.to_string();
 	if (time.pora_dnia() == time_of_day::rano)
-		std::cout<<"rano"<<std::endl;
+		std::cout<<" rano"<<std::endl;
 	 if (time.pora_dnia() == time_of_day::dzien)
-               std::cout<<"poludnie"<<std::endl;
+               std::cout<<" poludnie"<<std::endl;
 	 if (time.pora_dnia() == time_of_day::wieczor)
-                std::cout<<"wieczor"<<std::endl;
+                std::cout<<" wieczor"<<std::endl;
 	 if (time.pora_dnia() == time_of_day::noc)
-                std::cout<<"noc"<<std::endl;
+                std::cout<<" noc"<<std::endl;
 	return 0;
 
 }
